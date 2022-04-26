@@ -18,6 +18,7 @@ public class Prob01 {
 				money = money % MONEYS[i];
 			}
 			System.out.println(MONEYS[i] + "원 : " + ml[i] + "개");
+			
 		}
 		scanner.close();
 	}

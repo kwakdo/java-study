@@ -10,7 +10,13 @@ public class Prob04 {
 	}
 	
 	public static char[] reverse(String str) {
-		/* 코드를 완성합니다 */
+		str = "Hello World";
+		char[]c1 = str.toCharArray();
+		char[] result = new char[str.length()];
+		for (int j = str.length() - 1; j >= 0; j--) {
+			result[str.length() - 1 - j] = c1[j];
+		}
+		System.out.println(result);
 		return null;
 	}
 

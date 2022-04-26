@@ -19,7 +19,6 @@ public class Prob01 {
 			}
 			System.out.println(MONEYS[i] + "원 : " + ml[i] + "개");
 		}
-
 		scanner.close();
 	}
 }

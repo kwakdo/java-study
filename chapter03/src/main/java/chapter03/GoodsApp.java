@@ -1,9 +1,15 @@
 package chapter03;
 
+import java.util.Scanner;
+
 public class GoodsApp {
 
+	private static final int COUNT_GOODS = 0;
+
 	public static void main(String[] args) {
+	    Scanner scanner = new Scanner( System.in );
 		Goods goods = new Goods();
+		
 		
 		goods.setName("nikon");
 		goods.setPrice(-1);

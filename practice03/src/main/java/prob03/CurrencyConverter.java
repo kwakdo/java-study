@@ -8,4 +8,14 @@ public class CurrencyConverter {
 
 	}
 
+	public static double toDollar(double won) {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	public static double toKRW(double dollar) {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
 }

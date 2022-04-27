@@ -19,11 +19,10 @@ public class GoodsApp {
 					String name = datas[0];
 					int price = Integer.parseInt(datas[1]);
 					int count = Integer.parseInt(datas[2]);
-					
-					System.out.println(name + ":" + price + ":" + count);
+				
+		// 상품 출력
+				System.out.println(name + "(가격:" + price + "원)이 " + count + "개 입고 되었습니다.");
 				}
-		// 상품 출
-		
 		// 자원정리
 		scanner.close();
 	}

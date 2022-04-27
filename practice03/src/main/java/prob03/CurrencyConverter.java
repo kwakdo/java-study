@@ -9,13 +9,12 @@ public class CurrencyConverter {
 	}
 
 	public static double toDollar(double won) {
-		// TODO Auto-generated method stub
-		return 1;
+		return 1000-won/10000*(rate/1000);
 	}
 
 	public static double toKRW(double dollar) {
 		// TODO Auto-generated method stub
-		return 1;
+		return (dollar * rate);
 	}
 
 }

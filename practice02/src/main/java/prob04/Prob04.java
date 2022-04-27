@@ -10,18 +10,19 @@ public class Prob04 {
 	}
 	
 	public static char[] reverse(String str) {
-		str = "Hello World";
-		char[]c1 = str.toCharArray();
-		char[] result = new char[str.length()];
-		for (int j = str.length() - 1; j >= 0; j--) {
-			result[str.length() - 1 - j] = c1[j];
+		char[] result = str.toCharArray();
+
+		int i = result.length / 2;
+		for(int j = 0; j < i; j++) {
+			char temp = result[j];
+			result[j] = result[result.length - 1 - j];
+			result[result.length - 1 - j] = temp;
 		}
-		System.out.println(result);
-		return null;
+
+		return result;
 	}
 
-	public static void printCharArray(char[] array){
-		/* 코드를 완성합니다 */
-		System.out.println( array );
+	public static void printCharArray(char[] array) {
+		System.out.println(array);
 	}
 }

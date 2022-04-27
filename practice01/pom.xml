@@ -18,7 +18,7 @@
 	</properties>
 
 	<build>
-		<finalName>practice03</finalName>
+		<finalName>practice01</finalName>
 	</build>
 
 </project>

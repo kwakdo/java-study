@@ -1,11 +1,17 @@
 package chapter03;
 
 public class Goods {
+	public static int countOfGoods;
 	private String name;
 	private int price;
 	private int countStock;
 	private int countSold;
+	
+	public Goods() {
+		countOfGoods = Goods.countOfGoods + 1;
+	}
 
+	//public string getName
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -16,7 +22,7 @@ public class Goods {
 
 	public void setPrice(int price) {
 		// 데이터 보호
-		if(price < 0) {
+		if (price < 0) {
 			price = 0;
 		}
 		this.price = price;
@@ -40,6 +46,15 @@ public class Goods {
 
 	public String getName() {
 		return name;
+	}
+
+	public void showInfo() {
+		System.out.println("name: "+ name +", price: " + price + " ,countStock: " + countStock + " countSold: " + countSold);
+		
+	}
+
+	public int calcDiscountPrice(double discountRate) {
+		return (int) (discountRate * price);
 	}
 
 }

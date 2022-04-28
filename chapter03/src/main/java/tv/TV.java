@@ -1,4 +1,4 @@
-package chapter03;
+package tv;
 
 public class TV {
 	private int channel; // 0 ~ 255 rotation

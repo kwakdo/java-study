@@ -9,4 +9,8 @@ public class StringUtilTest {
 
 		System.out.println("결과 문자열 : " + resultStr);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master

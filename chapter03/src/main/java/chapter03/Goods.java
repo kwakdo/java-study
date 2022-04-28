@@ -6,12 +6,19 @@ public class Goods {
 	private int price;
 	private int countStock;
 	private int countSold;
-	
+
 	public Goods() {
+		
+	}
+	public Goods(String name, int price, int countStock, int countSold) {
 		countOfGoods = Goods.countOfGoods + 1;
+
+		this.name = name;
+		this.price = price;
+		this.countStock = countStock;
+		this.countSold = countSold;
 	}
 
-	//public string getName
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -49,8 +56,9 @@ public class Goods {
 	}
 
 	public void showInfo() {
-		System.out.println("name: "+ name +", price: " + price + " ,countStock: " + countStock + " countSold: " + countSold);
-		
+		System.out.println(
+				"name: " + name + ", price: " + price + " ,countStock: " + countStock + " countSold: " + countSold);
+
 	}
 
 	public int calcDiscountPrice(double discountRate) {

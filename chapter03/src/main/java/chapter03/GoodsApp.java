@@ -21,7 +21,9 @@ public class GoodsApp {
 			//System.out.println("name: "+ name + ", price: " + price + " ,countStock: " + countStock + ", countSold: " + countSold);
 		
 		
-		Goods goods2 = new Goods();
+		Goods goods2 = new Goods("tv", 10000, 10, 10);
+		goods2.showInfo();
+		
 		Goods goods3 = new Goods();
 		System.out.println("Goods Count: " + Goods.countOfGoods);
 		

@@ -10,4 +10,8 @@ public class StringUtil {
 		String concat = stringBuilder.toString();
 		return concat;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master

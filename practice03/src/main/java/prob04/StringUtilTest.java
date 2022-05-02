@@ -9,4 +9,12 @@ public class StringUtilTest {
 
 		System.out.println("결과 문자열 : " + resultStr);
 	}
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master

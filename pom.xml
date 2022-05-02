@@ -9,7 +9,11 @@
 		<module>practice01</module>
 		<module>practice03</module>
 		<module>practice02</module>
+<<<<<<< HEAD
 		<module>preactice05</module>
 		<module>chapter04</module>
+=======
+		<module>practice04</module>
+>>>>>>> refs/remotes/origin/master
 	</modules>
 </project>

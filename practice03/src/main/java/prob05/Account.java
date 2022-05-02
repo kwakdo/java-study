@@ -35,4 +35,12 @@ public class Account {
 		balance = balance - j;
 	}
 
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/master

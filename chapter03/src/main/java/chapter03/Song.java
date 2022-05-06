@@ -7,8 +7,11 @@ public class Song {
 	private String composer;
 	private int year;
 	private int track;
+<<<<<<< HEAD
+=======
 	
 	
+>>>>>>> refs/remotes/origin/master
 	public String getTitle() {
 		return title;
 	}

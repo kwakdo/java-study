@@ -21,6 +21,16 @@ public class GoodsApp {
 			//System.out.println("name: "+ name + ", price: " + price + " ,countStock: " + countStock + ", countSold: " + countSold);
 		
 		
+<<<<<<< HEAD
+		Goods goods2 = new Goods();
+		Goods goods3 = new Goods();
+		System.out.println("Goods Count: " + Goods.countOfGoods);
+		
+		// discount price 구하기
+		goods.setPrice(2000);
+		int discountPrice = goods.calcDiscountPrice(0.5);
+		System.out.println("Goods Discount Price: " + discountPrice);
+=======
 		Goods goods2 = new Goods("tv", 10000, 10, 10);
 		goods2.showInfo();
 		
@@ -31,5 +41,6 @@ public class GoodsApp {
 		goods.setPrice(2000);
 		int discountPrice = goods.calcDiscountPrice(0.5);
 		System.out.println("Goods Discount Price" + discountPrice);
+>>>>>>> refs/remotes/origin/master
 		}
 	}

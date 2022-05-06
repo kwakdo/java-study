@@ -12,5 +12,9 @@ public class StringUtilTest {
 <<<<<<< HEAD
 }
 =======
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master

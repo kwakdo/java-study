@@ -6,6 +6,16 @@ public class Main {
 		Point point1 = new Point();
 		point1.setX(20);
 		point1.setY(10);
+<<<<<<< HEAD
+		
+		point1.show();
+	}
+	
+	//public static void drawPoint(Point point) 
+		
+}
+
+=======
 
 		// point1.show();
 		drawPoint(point1);
@@ -48,3 +58,4 @@ public class Main {
 		
 	}
 }
+>>>>>>> refs/remotes/origin/master

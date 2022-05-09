@@ -45,17 +45,27 @@ public class ChatClient {
 		      System.out.print(">>");
 		      String input = scanner.nextLine();
 						
+		   // 8. quit 프로토콜 처리
 		      if( "quit".equals(input) == true) {
-		          // 8. quit 프로토콜 처리
+		    	  printWriter.println("quit");
+		    	  printWriter.flush();
+		    	  
+		    	  try {
+		    		  chatClientThread.join();
+		    		  
+		    	  } catch (InterruptedException e) {
+		  			e.printStackTrace();
+		    	  }
 		          break;
+		          
 		      } else {
 		          // 9. 메시지 처리     
 		    	  printWriter.println("MESSAGE: " + input);
 		      }
 		   }
 
-		} catch( IOException ex ) {
-		       log( "error:" + ex );
+		} catch(IOException ex) {
+		       log("error: " + ex);
 		} finally {
 		      //10. 자원정리
 		} 

@@ -24,7 +24,7 @@ public class RequestHandler extends Thread {
 			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 			
 			// logging Remote Host IP Address & Port
-			InetSocketAddress inetSocketAddress = ( InetSocketAddress )socket.getRemoteSocketAddress();
+			InetSocketAddress inetSocketAddress = (InetSocketAddress)socket.getRemoteSocketAddress();
 			consoleLog("connected from " + inetSocketAddress.getAddress().getHostAddress() + ":" + inetSocketAddress.getPort() );
 			
 			String request = null;
@@ -110,9 +110,9 @@ public class RequestHandler extends Thread {
 	}
 
 	private void response400Error(OutputStream outputStream, String url, String protocol) throws IOException {
-				File file = new File("./webapp/error/400/html");
+				File file = new File("./webapp + /error/400.html");
 				if(!file.exists() == false) {
-					System.out.println("400 Bad Request");
+					response400Error(outputStream, url, protocol);
 					return;
 				}
 				byte[] body = Files.readAllBytes(file.toPath());
@@ -124,9 +124,9 @@ public class RequestHandler extends Thread {
 			}
 	
 	private void response404Response(OutputStream outputStream, String url, String protocol) throws IOException {
-		File file = new File("./webapp/error/404/html");
+		File file = new File("./webapp + /error/404.html");
 		if(!file.exists() == false) {
-			System.out.println("404 File Not Found");
+			System.out.println("file not found:" + file.getAbsolutePath());
 			return;
 		}
 		byte[] body = Files.readAllBytes(file.toPath());

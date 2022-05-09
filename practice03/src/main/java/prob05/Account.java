@@ -34,13 +34,4 @@ public class Account {
 		System.out.println(accountNo + " 계좌에 " + j + "만원이 출금되었습니다.");
 		balance = balance - j;
 	}
-
-<<<<<<< HEAD
 }
-=======
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master

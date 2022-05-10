@@ -30,6 +30,7 @@ public class ChatClientApp {
 		
 		if("JOIN:OK".equals(line)) {
 			new ChatWindow(name).show();
+			
 		}
 	}
 

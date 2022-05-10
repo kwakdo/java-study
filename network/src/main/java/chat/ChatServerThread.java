@@ -6,9 +6,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChatServerThread extends Thread {
@@ -30,72 +31,85 @@ public class ChatServerThread extends Thread {
 
 	@Override
 	public void run() {
+		// 1. Remote Host Information
+		InetSocketAddress inetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+		String remoteHostAddress = inetSocketAddress.getAddress().getHostAddress();
+		int remoteHostPort = inetSocketAddress.getPort();
+
+		ChatServer.log("connected by client[" + remoteHostAddress + ":" + remoteHostPort + "]");
 
 		try {
 			// 2. 스트림 얻기
 			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 			printWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8),
 					true);
-			List<Writer> listWriters = new ArrayList<Writer>();
 
 			// 3. 요청 처리
 			while (true) {
 				String request = bufferedReader.readLine();
 				if (request == null) {
-					log("클라이언트로 부터 연결 끊김");
+					ChatServer.log("클라이언트로 부터 연결 끊김");
+					doQuit(printWriter);
 					break;
 				}
 
+				// 4. 프로토콜 분석
 				String[] tokens = request.split(":");
-
 				if ("join".equals(tokens[0])) {
 					doJoin(tokens[1], printWriter);
-
-				} else if ("message".equals(tokens[0])) {
+				} else if ("MESSAGE".equals(tokens[0])) {
 					doMessage(tokens[1]);
-
 				} else if ("quit".equals(tokens[0])) {
 					doQuit(printWriter);
-					System.out.println(printWriter + "님이 퇴장 하였습니다");
-
 				} else {
-					ChatServer.log("에러:알수 없는 요청(" + tokens[0] + ")");
+					ChatServer.log("error: 알 수 없는 요청(" + tokens[0] + ")");
 				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
 
+			}
+		} catch (SocketException ex) {
+			System.out.println("[server] suddenly closed by client");
+		} catch (IOException ex) {
+			System.out.println("[server] error:" + ex);
 		} finally {
 			try {
-				if (bufferedReader != null) {
-					bufferedReader.close();
+				if (socket != null && !socket.isClosed()) {
+					socket.close();
 				}
-				if (printWriter != null) {
-					printWriter.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (IOException ex) {
+				ex.printStackTrace();
 			}
 		}
-
 	}
 
-	private void log(String log) {
-		System.out.println("[server] " + log);
-	}
+	private void doQuit(Writer writer) {
+		removeWriter(writer);
 
-	private void doJoin(String nickName, Writer writer) {
-		this.nickname = nickName;
-
-		String data = nickName + "님이 참여하였습니다.";
+		String data = nickname + "님이 퇴장 하였습니다.";
 		broadcast(data);
+	}
 
-		/* writer pool에 저장 */
+	private void removeWriter(Writer writer) {
+		synchronized (listWriters) {
+			listWriters.remove(writer);
+		}
+	}
+
+	private void doMessage(String data) {
+		String message = nickname + ":" + data;
+		broadcast(message);
+	}
+
+	private void doJoin(String nickname, Writer writer) {
+		this.nickname = nickname;
+
+		String data = nickname + "님이 참여하였습니다.";
+		broadcast(data);
+		// writer pool에 저장
 		addWriter(writer);
 
 		// ack
-		printWriter.println("join:ok");
-		printWriter.flush();
+		((PrintWriter) writer).println("join:ok");
+
 	}
 
 	private void addWriter(Writer writer) {
@@ -104,30 +118,12 @@ public class ChatServerThread extends Thread {
 		}
 	}
 
-	private void doMessage(String message) {
-		broadcast(nickname + ":" + message);
-	}
-
 	private void broadcast(String data) {
 		synchronized (listWriters) {
 			for (Writer writer : listWriters) {
 				PrintWriter printWriter = (PrintWriter) writer;
 				printWriter.println(data);
-				printWriter.flush();
 			}
-		}
-	}
-
-	private void doQuit(Writer writer) {
-		removeWriter(writer);
-		String data = nickname + "님이 퇴장 하였습니다.";
-		broadcast(data);
-
-	}
-
-	private void removeWriter(Writer writer) {
-		synchronized (listWriters) {
-			listWriters.remove(writer);
 		}
 	}
 }

@@ -105,7 +105,7 @@ public class ChatWindow {
 	
 	/**
 	 * 
-	 * @author kwakdo
+	 * @author kickscar
 	 * Receive Thread from Chat Server
 	 *
 	 */

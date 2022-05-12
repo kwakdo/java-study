@@ -12,6 +12,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+import chat.ChatClientThread;
 
 public class ChatWindow {
 
@@ -20,6 +25,8 @@ public class ChatWindow {
 	private Button buttonSend;
 	private TextField textField;
 	private TextArea textArea;
+	private BufferedReader bufferedReader;
+	private PrintWriter printWriter;
 
 	public ChatWindow(String name) {
 		frame = new Frame(name);
@@ -77,10 +84,15 @@ public class ChatWindow {
 		/**
 		 * 2. IOStream (Pipeline established)
 		 */
+		this.bufferedReader =  bufferedReader;
+		this.printWriter =  printWriter;
 		
 		/**
 		 * 3. Chat Client Thread 생성하고 실행
 		 */
+		ChatClientThread chatClientThread = new ChatClientThread();
+		chatClientThread.start();
+
 	}
 	
 	private void sendMessage() {
